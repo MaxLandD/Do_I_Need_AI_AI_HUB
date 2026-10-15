@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>HOME-07 Do I need AI for this?</title>
+<style>
+@font-face {
+  font-family: "Arimo";
+  src: url("assets/fonts/Arimo-latin.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+}
+:root {
+  --dark: #0C4A54;
+  --teal: #12707E;
+  --mid: #3E8893;
+  --tint: #EAF3F4;
+  --green: #2E6B4F;
+  --amber: #8A6320;
+  --text: #2B3437;
+  --soft-border: #8FC3CA;
+  --idle-border: #D6DEE0;
+}
+html, body { margin: 0; padding: 0; background: #000; }
+#stage {
+  position: relative; width: 1920px; height: 1080px; overflow: hidden;
+  font-family: "Arimo", Arial, sans-serif; color: var(--dark);
+  background: var(--tint);
+}
+.abs { position: absolute; }
+.layer { position: absolute; inset: 0; }
+svg.icon { display: block; fill: currentColor; }
+.will { will-change: transform, opacity; }
+
+/* ---------- dark house layer (intro / outro) ---------- */
+#dark { background: var(--dark); }
+#motif .bar { position: absolute; left: 0; top: 0; height: 18px; border-radius: 99px; background: var(--teal); transform-origin: 0 50%; }
+
+/* intro */
+#introTitle { left: 0; width: 1920px; top: 330px; text-align: center; font-weight: 700; font-size: 96px; line-height: 116px; color: #fff; letter-spacing: -0.5px; white-space: nowrap; }
+#introTitle span { display: inline-block; }
+#introSub { left: 0; width: 1920px; top: 458px; text-align: center; font-size: 42px; line-height: 54px; color: #DCEDEF; }
+#introDivider { left: 890px; top: 546px; width: 140px; height: 4px; border-radius: 2px; background: var(--mid); transform-origin: 0 50%; }
+#introLogo { left: 704px; top: 602px; width: 173px; height: 138px; }
+#introName { left: 915px; top: 627px; font-weight: 700; font-size: 36px; line-height: 42px; color: #fff; }
+
+/* outro */
+#pauseIcon { left: 150px; top: 200px; width: 150px; height: 150px; }
+#pauseIcon .ringw { position: absolute; inset: 0; border-radius: 50%; background: #fff; }
+#pauseIcon .fill { position: absolute; inset: 10px; border-radius: 50%; background: var(--amber); }
+#pauseIcon .bar { position: absolute; top: 51px; width: 20px; height: 48px; border-radius: 6px; background: #fff; }
+#pauseIcon .pulse { position: absolute; inset: 0; border-radius: 50%; border: 4px solid #fff; box-sizing: border-box; }
+#outroL1, #outroL2 { left: 340px; font-weight: 700; font-size: 50px; line-height: 62px; color: #fff; white-space: nowrap; }
+#outroL1 { top: 213px; }
+#outroL2 { top: 275px; }
+#hubCard { left: 150px; top: 470px; width: 900px; height: 280px; border-radius: 22px; background: #fff; box-shadow: 0 24px 60px rgba(0,0,0,0.18); }
+#hubCard .circ { position: absolute; left: 50px; top: 65px; width: 150px; height: 150px; border-radius: 50%; background: var(--tint); color: var(--teal); }
+#hubCard .circ svg { position: absolute; left: 39px; top: 39px; width: 72px; height: 72px; }
+#hubCard .txt { position: absolute; left: 240px; top: 108px; font-weight: 700; font-size: 52px; line-height: 64px; color: var(--dark); white-space: nowrap; }
+#outroLogo { left: 1406px; top: 344px; width: 347px; height: 276px; }
+
+/* ---------- scene 2: the reflex ---------- */
+#panel { left: 150px; top: 110px; width: 1020px; height: 670px; border-radius: 28px; background: #fff;
+  box-shadow: 0 2px 0 rgba(12,74,84,0.05), 0 22px 50px rgba(12,74,84,0.07); }
+#panelHead { left: 190px; top: 139px; font-weight: 700; font-size: 28px; line-height: 34px; letter-spacing: 4.6px; color: var(--mid); }
+#panelRule { left: 190px; top: 184px; width: 940px; height: 2px; background: #E6EEEF; }
+.row { position: absolute; left: 190px; width: 940px; height: 114px; }
+.row .sep { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: #EEF2F3; }
+.row .circ { position: absolute; left: 0; top: 27px; width: 60px; height: 60px; border-radius: 50%; background: var(--tint); color: var(--teal); }
+.row .circ svg { position: absolute; left: 17px; top: 17px; width: 26px; height: 26px; }
+.row .txt { position: absolute; left: 86px; top: 33px; font-size: 38px; line-height: 46px; color: var(--text); white-space: nowrap; }
+.askBtn { position: absolute; right: 0; top: 29px; width: 172px; height: 56px; }
+.askBtn .halo { position: absolute; inset: 0; border-radius: 40px; background: #DCEAEC; }
+.askBtn .pulse { position: absolute; inset: 0; border-radius: 40px; border: 3px solid var(--teal); box-sizing: border-box; }
+.askBtn .face { position: absolute; inset: 0; border-radius: 28px; border: 2px solid var(--soft-border); box-sizing: border-box; background: var(--tint); overflow: hidden; }
+.askBtn .sheen { position: absolute; top: -20px; bottom: -20px; width: 90px; left: -120px;
+  background: linear-gradient(100deg, rgba(18,112,126,0) 0%, rgba(18,112,126,0.28) 50%, rgba(18,112,126,0) 100%); }
+.askBtn .lbl { position: absolute; left: 0; right: 0; top: 0; height: 52px; display: flex; align-items: center; justify-content: center; gap: 10px;
+  font-weight: 700; font-size: 28px; color: var(--teal); }
+.askBtn .lbl svg { width: 26px; height: 26px; }
+#sideLine { left: 1270px; top: 356px; font-weight: 700; font-size: 64px; line-height: 76px; white-space: nowrap; }
+#side1 { color: var(--dark); }
+#side2 { color: var(--mid); }
+#cursor { left: 0; top: 0; width: 46px; height: 58px; transform-origin: 4px 4px; }
+
+/* ---------- sorting scenes ---------- */
+.card { position: absolute; left: 0; top: 0; height: 188px; min-width: 860px; box-sizing: border-box; padding: 0 56px;
+  display: flex; align-items: center; gap: 30px; border-radius: 28px; transform-origin: 0 0; }
+.card .shadow { position: absolute; inset: 0; border-radius: 28px; background: #fff; box-shadow: 0 16px 36px rgba(12,74,84,0.11), 0 3px 6px rgba(12,74,84,0.05); }
+.card .circ { position: relative; flex: none; width: 104px; height: 104px; border-radius: 50%; background: var(--tint); color: var(--teal); }
+.card .circ svg { position: absolute; left: 30px; top: 30px; width: 44px; height: 44px; }
+.card .txt { position: relative; font-weight: 700; font-size: 56px; line-height: 68px; color: var(--dark); white-space: nowrap; }
+.card .caret { display: inline-block; position: relative; width: 0; height: 54px; vertical-align: -8px; }
+.card .caret::after { content: ''; position: absolute; left: 2px; top: 0; width: 4px; height: 54px; background: var(--teal); border-radius: 2px; }
+.card .page { position: absolute; inset: 0; border-radius: 28px; background: #fff; border: 2px solid #DCE6E8; box-sizing: border-box; }
+.slot { position: absolute; top: 601px; width: 298px; height: 228px; }
+.slot .bg { position: absolute; inset: 0; border-radius: 22px; box-sizing: border-box; border: 2px solid var(--idle-border); background: #fff; }
+.slot .dash { position: absolute; left: 0; top: 0; overflow: visible; }
+.slot .ring { position: absolute; }
+.slot .ripple { position: absolute; inset: 0; border-radius: 22px; border: 3px solid var(--teal); box-sizing: border-box; opacity: 0; }
+.slot .circ { position: absolute; left: 101px; top: 36px; width: 96px; height: 96px; border-radius: 50%; }
+.slot .circ svg { position: absolute; left: 27px; top: 27px; width: 42px; height: 42px; }
+.slot .lbl { position: absolute; left: 0; right: 0; top: 152px; text-align: center; font-weight: 700; font-size: 34px; line-height: 44px; white-space: nowrap; }
+.tick { position: absolute; left: 262px; top: -15px; width: 50px; height: 50px; border-radius: 50%; background: #fff; }
+.tick .g { position: absolute; inset: 3px; border-radius: 50%; background: var(--green); color: #fff; }
+.tick .g svg { position: absolute; left: 9px; top: 9px; width: 26px; height: 26px; }
+.token { position: absolute; left: 0; top: 0; width: 104px; height: 104px; margin: -52px 0 0 -52px; border-radius: 28px; background: #fff;
+  box-shadow: 0 10px 24px rgba(12,74,84,0.18); color: var(--teal); }
+.token .c { position: absolute; left: 12px; top: 12px; width: 80px; height: 80px; border-radius: 50%; background: var(--tint); }
+.token svg { position: absolute; left: 34px; top: 34px; width: 36px; height: 36px; }
+.spark { position: absolute; left: 0; top: 0; color: var(--teal); }
+#trails { position: absolute; left: 0; top: 0; overflow: visible; z-index: 6; }
+#tokens, #cards, #sparks { position: absolute; inset: 0; }
+#tokens { z-index: 7; }
+#cards { z-index: 8; }
+#sparks { z-index: 9; }
+
+/* ---------- scene 8: the four questions ---------- */
+#kicker { left: 0; width: 1920px; top: 274px; text-align: center; font-weight: 700; font-size: 32px; line-height: 40px; letter-spacing: 6.5px; color: var(--mid); white-space: nowrap; }
+#qTitle { left: 0; width: 1920px; top: 322px; text-align: center; font-weight: 700; font-size: 112px; line-height: 134px; letter-spacing: -1px; color: var(--dark); white-space: nowrap; }
+#qTitle span { display: inline-block; }
+#chips { left: 90px; width: 1740px; top: 502px; height: 94px; display: flex; justify-content: center; gap: 20px; }
+.chip { position: relative; flex: none; height: 94px; box-sizing: border-box; border: 3px solid var(--soft-border); border-radius: 47px; background: #fff;
+  display: flex; align-items: center; padding: 0 28px 0 14px; gap: 14px; font-weight: 700; font-size: 32px; color: var(--dark); white-space: nowrap; }
+.chip .c { position: relative; flex: none; width: 60px; height: 60px; border-radius: 50%; background: var(--teal); color: #fff; }
+.chip .c svg { position: absolute; left: 16px; top: 16px; width: 28px; height: 28px; }
+#closing { left: 0; width: 1920px; top: 640px; height: 56px; display: flex; justify-content: center; align-items: center; gap: 16px;
+  font-weight: 700; font-size: 44px; color: var(--teal); white-space: nowrap; }
+#closing .sp { position: relative; width: 40px; height: 40px; }
+#closing .sp svg { position: relative; width: 40px; height: 40px; fill: currentColor; }
+#closing .glow { position: absolute; left: -40px; top: -40px; width: 120px; height: 120px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(18,112,126,0.30) 0%, rgba(18,112,126,0) 65%); }
+
+/* ---------- captions ---------- */
+#cap { left: 50%; bottom: 70px; height: 77px; padding: 0 30px; border-radius: 10px; background: rgba(24,51,54,0.92);
+  color: #fff; font-size: 38px; line-height: 77px; white-space: nowrap; transform: translateX(-50%); }
+</style>
+</head>
+<body>
+<div id="stage">
+  <!-- light content scenes -->
+  <div id="s2" class="layer">
+    <div id="panel" class="abs will"></div>
+    <div id="panelHead" class="abs will">MY TASKS TODAY</div>
+    <div id="panelRule" class="abs will"></div>
+    <div id="rows"></div>
+    <div id="sideLine" class="abs"><div id="side1" class="will">Every task,</div><div id="side2" class="will">the same button.</div></div>
+  </div>
+  <div id="sort" class="layer">
+    <svg id="trails" width="1920" height="1080"></svg>
+    <div id="slots"></div>
+    <div id="cards"></div>
+    <div id="tokens"></div>
+    <div id="sparks"></div>
+  </div>
+  <div id="cursorLayer" class="layer"><svg id="cursor" class="abs will" viewBox="0 0 24 30"><path d="M2.2 1.8 L2.2 23.4 L7.4 18.4 L10.9 26.4 L14.6 24.8 L11.2 17.1 L18.3 17.1 Z" fill="#fff" stroke="#1D3438" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
+  <div id="s8" class="layer">
+    <div id="kicker" class="abs will">BEFORE YOU OPEN IT</div>
+    <div id="qTitle" class="abs"></div>
+    <div id="chips" class="abs"></div>
+    <div id="closing" class="abs will"><div class="sp"><div class="glow"></div></div><span>Four times no? Then AI can help.</span></div>
+  </div>
+
+  <!-- dark house layer -->
+  <div id="dark" class="layer">
+    <div id="motif" class="layer"></div>
+    <div id="intro" class="layer">
+      <div id="introTitle" class="abs"></div>
+      <div id="introSub" class="abs will">You don't need AI for everything</div>
+      <div id="introDivider" class="abs will"></div>
+      <img id="introLogo" class="abs will" src="assets/logo_white.png" alt="">
+      <div id="introName" class="abs will">MSF AI Accelerator<br>programme</div>
+    </div>
+    <div id="outro" class="layer">
+      <div id="pauseIcon" class="abs will"><div class="pulse"></div><div class="ringw"></div><div class="fill"></div><div class="bar" style="left:51px"></div><div class="bar" style="left:79px"></div></div>
+      <div id="outroL1" class="abs will">Sensitive, about a person, or unsure?</div>
+      <div id="outroL2" class="abs will">Pause and ask.</div>
+      <div id="hubCard" class="abs will"><div class="circ"></div><div class="txt">AI Hub on SharePoint</div></div>
+      <img id="outroLogo" class="abs will" src="assets/logo_white.png" alt="">
+    </div>
+  </div>
+
+  <div id="cap" class="abs"></div>
+</div>
+<script src="timing.js"></script>
+<script src="icons.js"></script>
+<script src="anim.js"></script>
+</body>
+</html>

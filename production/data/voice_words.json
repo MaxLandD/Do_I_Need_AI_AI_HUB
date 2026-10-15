@@ -1,0 +1,891 @@
+{
+ "lines": [
+  "AI is a great tool.",
+  "But you don't need it for everything.",
+  "A normal day. Five tasks.",
+  "And the same reflex every time: open AI.",
+  "Add up three invoices?",
+  "No need for AI. A calculator is faster.",
+  "Check the cold chain procedure?",
+  "MSF already wrote it down. Go to the guideline.",
+  "A two-line reply? Just type it.",
+  "Asking AI would take longer.",
+  "A colleague's evaluation? That needs you:",
+  "your judgement, your words, your relationship.",
+  "A forty-page report to summarise?",
+  "Now AI earns its place.",
+  "It saves real time. You still check it.",
+  "So, before you open AI, ask yourself four questions.",
+  "A simpler tool? Already written down?",
+  "Does it need me? Quicker to do it myself?",
+  "Four times no? Then AI can help.",
+  "Sensitive, about a person, or unsure? Pause and ask.",
+  "You will find everything else on the MSF AI Hub."
+ ],
+ "words": [
+  {
+   "w": "ai",
+   "start": 0.11,
+   "end": 0.54,
+   "line": 0
+  },
+  {
+   "w": "is",
+   "start": 0.54,
+   "end": 0.83,
+   "line": 0
+  },
+  {
+   "w": "a",
+   "start": 0.83,
+   "end": 0.88,
+   "line": 0
+  },
+  {
+   "w": "great",
+   "start": 0.88,
+   "end": 1.49,
+   "line": 0
+  },
+  {
+   "w": "tool",
+   "start": 1.49,
+   "end": 1.93,
+   "line": 0
+  },
+  {
+   "w": "but",
+   "start": 2.46,
+   "end": 2.77,
+   "line": 1
+  },
+  {
+   "w": "you",
+   "start": 2.77,
+   "end": 2.9,
+   "line": 1
+  },
+  {
+   "w": "don't",
+   "start": 2.9,
+   "end": 3.08,
+   "line": 1
+  },
+  {
+   "w": "need",
+   "start": 3.08,
+   "end": 3.29,
+   "line": 1
+  },
+  {
+   "w": "it",
+   "start": 3.29,
+   "end": 3.39,
+   "line": 1
+  },
+  {
+   "w": "for",
+   "start": 3.39,
+   "end": 3.59,
+   "line": 1
+  },
+  {
+   "w": "everything",
+   "start": 3.59,
+   "end": 4.17,
+   "line": 1
+  },
+  {
+   "w": "a",
+   "start": 4.92,
+   "end": 4.98,
+   "line": 2
+  },
+  {
+   "w": "normal",
+   "start": 4.98,
+   "end": 5.35,
+   "line": 2
+  },
+  {
+   "w": "day",
+   "start": 5.35,
+   "end": 5.89,
+   "line": 2
+  },
+  {
+   "w": "five",
+   "start": 6.26,
+   "end": 6.58,
+   "line": 2
+  },
+  {
+   "w": "tasks",
+   "start": 6.58,
+   "end": 7.21,
+   "line": 2
+  },
+  {
+   "w": "and",
+   "start": 7.57,
+   "end": 7.73,
+   "line": 3
+  },
+  {
+   "w": "the",
+   "start": 7.73,
+   "end": 7.79,
+   "line": 3
+  },
+  {
+   "w": "same",
+   "start": 7.79,
+   "end": 8.16,
+   "line": 3
+  },
+  {
+   "w": "reflex",
+   "start": 8.16,
+   "end": 8.8,
+   "line": 3
+  },
+  {
+   "w": "every",
+   "start": 8.8,
+   "end": 9.15,
+   "line": 3
+  },
+  {
+   "w": "time",
+   "start": 9.15,
+   "end": 9.59,
+   "line": 3
+  },
+  {
+   "w": "open",
+   "start": 10.08,
+   "end": 10.38,
+   "line": 3
+  },
+  {
+   "w": "ai",
+   "start": 10.38,
+   "end": 10.9,
+   "line": 3
+  },
+  {
+   "w": "add",
+   "start": 11.51,
+   "end": 11.62,
+   "line": 4
+  },
+  {
+   "w": "up",
+   "start": 11.62,
+   "end": 11.78,
+   "line": 4
+  },
+  {
+   "w": "three",
+   "start": 11.78,
+   "end": 12.07,
+   "line": 4
+  },
+  {
+   "w": "invoices",
+   "start": 12.07,
+   "end": 12.79,
+   "line": 4
+  },
+  {
+   "w": "no",
+   "start": 13.2,
+   "end": 13.33,
+   "line": 5
+  },
+  {
+   "w": "need",
+   "start": 13.33,
+   "end": 13.57,
+   "line": 5
+  },
+  {
+   "w": "for",
+   "start": 13.57,
+   "end": 13.7,
+   "line": 5
+  },
+  {
+   "w": "ai",
+   "start": 13.7,
+   "end": 14.16,
+   "line": 5
+  },
+  {
+   "w": "a",
+   "start": 14.37,
+   "end": 14.45,
+   "line": 5
+  },
+  {
+   "w": "calculator",
+   "start": 14.45,
+   "end": 15.04,
+   "line": 5
+  },
+  {
+   "w": "is",
+   "start": 15.04,
+   "end": 15.17,
+   "line": 5
+  },
+  {
+   "w": "faster",
+   "start": 15.17,
+   "end": 15.54,
+   "line": 5
+  },
+  {
+   "w": "check",
+   "start": 16.23,
+   "end": 16.47,
+   "line": 6
+  },
+  {
+   "w": "the",
+   "start": 16.47,
+   "end": 16.55,
+   "line": 6
+  },
+  {
+   "w": "cold",
+   "start": 16.55,
+   "end": 16.84,
+   "line": 6
+  },
+  {
+   "w": "chain",
+   "start": 16.84,
+   "end": 17.09,
+   "line": 6
+  },
+  {
+   "w": "procedure",
+   "start": 17.09,
+   "end": 17.77,
+   "line": 6
+  },
+  {
+   "w": "msf",
+   "start": 18.07,
+   "end": 18.57,
+   "line": 7
+  },
+  {
+   "w": "already",
+   "start": 18.57,
+   "end": 18.86,
+   "line": 7
+  },
+  {
+   "w": "wrote",
+   "start": 18.86,
+   "end": 19.09,
+   "line": 7
+  },
+  {
+   "w": "it",
+   "start": 19.09,
+   "end": 19.16,
+   "line": 7
+  },
+  {
+   "w": "down",
+   "start": 19.16,
+   "end": 19.54,
+   "line": 7
+  },
+  {
+   "w": "go",
+   "start": 19.83,
+   "end": 19.95,
+   "line": 7
+  },
+  {
+   "w": "to",
+   "start": 19.95,
+   "end": 20.08,
+   "line": 7
+  },
+  {
+   "w": "the",
+   "start": 20.08,
+   "end": 20.15,
+   "line": 7
+  },
+  {
+   "w": "guideline",
+   "start": 20.15,
+   "end": 20.75,
+   "line": 7
+  },
+  {
+   "w": "a",
+   "start": 21.25,
+   "end": 21.31,
+   "line": 8
+  },
+  {
+   "w": "two",
+   "start": 21.31,
+   "end": 21.62,
+   "line": 8
+  },
+  {
+   "w": "line",
+   "start": 21.62,
+   "end": 21.84,
+   "line": 8
+  },
+  {
+   "w": "reply",
+   "start": 21.84,
+   "end": 22.39,
+   "line": 8
+  },
+  {
+   "w": "just",
+   "start": 22.7,
+   "end": 22.98,
+   "line": 8
+  },
+  {
+   "w": "type",
+   "start": 22.98,
+   "end": 23.29,
+   "line": 8
+  },
+  {
+   "w": "it",
+   "start": 23.29,
+   "end": 23.52,
+   "line": 8
+  },
+  {
+   "w": "asking",
+   "start": 23.9,
+   "end": 24.28,
+   "line": 9
+  },
+  {
+   "w": "ai",
+   "start": 24.28,
+   "end": 24.63,
+   "line": 9
+  },
+  {
+   "w": "would",
+   "start": 24.63,
+   "end": 24.78,
+   "line": 9
+  },
+  {
+   "w": "take",
+   "start": 24.78,
+   "end": 24.99,
+   "line": 9
+  },
+  {
+   "w": "longer",
+   "start": 24.99,
+   "end": 25.33,
+   "line": 9
+  },
+  {
+   "w": "a",
+   "start": 26.08,
+   "end": 26.13,
+   "line": 10
+  },
+  {
+   "w": "colleague's",
+   "start": 26.13,
+   "end": 26.6,
+   "line": 10
+  },
+  {
+   "w": "evaluation",
+   "start": 26.6,
+   "end": 27.38,
+   "line": 10
+  },
+  {
+   "w": "that",
+   "start": 27.64,
+   "end": 27.89,
+   "line": 10
+  },
+  {
+   "w": "needs",
+   "start": 27.89,
+   "end": 28.33,
+   "line": 10
+  },
+  {
+   "w": "you",
+   "start": 28.33,
+   "end": 28.65,
+   "line": 10
+  },
+  {
+   "w": "your",
+   "start": 28.92,
+   "end": 29.22,
+   "line": 11
+  },
+  {
+   "w": "judgement",
+   "start": 29.22,
+   "end": 29.96,
+   "line": 11
+  },
+  {
+   "w": "your",
+   "start": 29.96,
+   "end": 30.29,
+   "line": 11
+  },
+  {
+   "w": "words",
+   "start": 30.29,
+   "end": 30.95,
+   "line": 11
+  },
+  {
+   "w": "your",
+   "start": 30.95,
+   "end": 31.23,
+   "line": 11
+  },
+  {
+   "w": "relationship",
+   "start": 31.23,
+   "end": 32.01,
+   "line": 11
+  },
+  {
+   "w": "a",
+   "start": 32.57,
+   "end": 32.61,
+   "line": 12
+  },
+  {
+   "w": "forty",
+   "start": 32.61,
+   "end": 33.03,
+   "line": 12
+  },
+  {
+   "w": "page",
+   "start": 33.03,
+   "end": 33.3,
+   "line": 12
+  },
+  {
+   "w": "report",
+   "start": 33.3,
+   "end": 33.7,
+   "line": 12
+  },
+  {
+   "w": "to",
+   "start": 33.7,
+   "end": 33.79,
+   "line": 12
+  },
+  {
+   "w": "summarise",
+   "start": 33.79,
+   "end": 34.54,
+   "line": 12
+  },
+  {
+   "w": "now",
+   "start": 34.81,
+   "end": 35.18,
+   "line": 13
+  },
+  {
+   "w": "ai",
+   "start": 35.18,
+   "end": 35.56,
+   "line": 13
+  },
+  {
+   "w": "earns",
+   "start": 35.56,
+   "end": 35.78,
+   "line": 13
+  },
+  {
+   "w": "its",
+   "start": 35.78,
+   "end": 35.93,
+   "line": 13
+  },
+  {
+   "w": "place",
+   "start": 35.93,
+   "end": 36.48,
+   "line": 13
+  },
+  {
+   "w": "it",
+   "start": 36.74,
+   "end": 36.86,
+   "line": 14
+  },
+  {
+   "w": "saves",
+   "start": 36.86,
+   "end": 37.21,
+   "line": 14
+  },
+  {
+   "w": "real",
+   "start": 37.21,
+   "end": 37.61,
+   "line": 14
+  },
+  {
+   "w": "time",
+   "start": 37.61,
+   "end": 38.1,
+   "line": 14
+  },
+  {
+   "w": "you",
+   "start": 38.37,
+   "end": 38.45,
+   "line": 14
+  },
+  {
+   "w": "still",
+   "start": 38.45,
+   "end": 38.73,
+   "line": 14
+  },
+  {
+   "w": "check",
+   "start": 38.73,
+   "end": 39.02,
+   "line": 14
+  },
+  {
+   "w": "it",
+   "start": 39.02,
+   "end": 39.22,
+   "line": 14
+  },
+  {
+   "w": "so",
+   "start": 39.62,
+   "end": 40.26,
+   "line": 15
+  },
+  {
+   "w": "before",
+   "start": 40.26,
+   "end": 40.64,
+   "line": 15
+  },
+  {
+   "w": "you",
+   "start": 40.64,
+   "end": 40.83,
+   "line": 15
+  },
+  {
+   "w": "open",
+   "start": 40.83,
+   "end": 41.13,
+   "line": 15
+  },
+  {
+   "w": "ai",
+   "start": 41.13,
+   "end": 41.7,
+   "line": 15
+  },
+  {
+   "w": "ask",
+   "start": 41.98,
+   "end": 42.23,
+   "line": 15
+  },
+  {
+   "w": "yourself",
+   "start": 42.23,
+   "end": 42.6,
+   "line": 15
+  },
+  {
+   "w": "four",
+   "start": 42.6,
+   "end": 42.97,
+   "line": 15
+  },
+  {
+   "w": "questions",
+   "start": 42.97,
+   "end": 43.69,
+   "line": 15
+  },
+  {
+   "w": "a",
+   "start": 44.13,
+   "end": 44.19,
+   "line": 16
+  },
+  {
+   "w": "simpler",
+   "start": 44.19,
+   "end": 44.58,
+   "line": 16
+  },
+  {
+   "w": "tool",
+   "start": 44.58,
+   "end": 45.0,
+   "line": 16
+  },
+  {
+   "w": "already",
+   "start": 45.35,
+   "end": 45.71,
+   "line": 16
+  },
+  {
+   "w": "written",
+   "start": 45.71,
+   "end": 45.97,
+   "line": 16
+  },
+  {
+   "w": "down",
+   "start": 45.97,
+   "end": 46.35,
+   "line": 16
+  },
+  {
+   "w": "does",
+   "start": 46.69,
+   "end": 46.88,
+   "line": 17
+  },
+  {
+   "w": "it",
+   "start": 46.88,
+   "end": 46.95,
+   "line": 17
+  },
+  {
+   "w": "need",
+   "start": 46.95,
+   "end": 47.22,
+   "line": 17
+  },
+  {
+   "w": "me",
+   "start": 47.22,
+   "end": 47.56,
+   "line": 17
+  },
+  {
+   "w": "quicker",
+   "start": 47.88,
+   "end": 48.17,
+   "line": 17
+  },
+  {
+   "w": "to",
+   "start": 48.17,
+   "end": 48.28,
+   "line": 17
+  },
+  {
+   "w": "do",
+   "start": 48.28,
+   "end": 48.41,
+   "line": 17
+  },
+  {
+   "w": "it",
+   "start": 48.41,
+   "end": 48.49,
+   "line": 17
+  },
+  {
+   "w": "myself",
+   "start": 48.49,
+   "end": 49.11,
+   "line": 17
+  },
+  {
+   "w": "four",
+   "start": 49.41,
+   "end": 49.72,
+   "line": 18
+  },
+  {
+   "w": "times",
+   "start": 49.72,
+   "end": 50.06,
+   "line": 18
+  },
+  {
+   "w": "no",
+   "start": 50.06,
+   "end": 50.43,
+   "line": 18
+  },
+  {
+   "w": "then",
+   "start": 50.67,
+   "end": 50.96,
+   "line": 18
+  },
+  {
+   "w": "ai",
+   "start": 50.96,
+   "end": 51.39,
+   "line": 18
+  },
+  {
+   "w": "can",
+   "start": 51.39,
+   "end": 51.59,
+   "line": 18
+  },
+  {
+   "w": "help",
+   "start": 51.59,
+   "end": 51.99,
+   "line": 18
+  },
+  {
+   "w": "sensitive",
+   "start": 52.36,
+   "end": 53.04,
+   "line": 19
+  },
+  {
+   "w": "about",
+   "start": 53.25,
+   "end": 53.55,
+   "line": 19
+  },
+  {
+   "w": "a",
+   "start": 53.55,
+   "end": 53.61,
+   "line": 19
+  },
+  {
+   "w": "person",
+   "start": 53.61,
+   "end": 54.21,
+   "line": 19
+  },
+  {
+   "w": "or",
+   "start": 54.21,
+   "end": 54.58,
+   "line": 19
+  },
+  {
+   "w": "unsure",
+   "start": 54.58,
+   "end": 55.07,
+   "line": 19
+  },
+  {
+   "w": "pause",
+   "start": 55.47,
+   "end": 56.04,
+   "line": 19
+  },
+  {
+   "w": "and",
+   "start": 56.04,
+   "end": 56.22,
+   "line": 19
+  },
+  {
+   "w": "ask",
+   "start": 56.22,
+   "end": 56.77,
+   "line": 19
+  },
+  {
+   "w": "you",
+   "start": 57.16,
+   "end": 57.3,
+   "line": 20
+  },
+  {
+   "w": "will",
+   "start": 57.3,
+   "end": 57.4,
+   "line": 20
+  },
+  {
+   "w": "find",
+   "start": 57.4,
+   "end": 57.79,
+   "line": 20
+  },
+  {
+   "w": "everything",
+   "start": 57.79,
+   "end": 58.24,
+   "line": 20
+  },
+  {
+   "w": "else",
+   "start": 58.24,
+   "end": 58.56,
+   "line": 20
+  },
+  {
+   "w": "on",
+   "start": 58.56,
+   "end": 58.73,
+   "line": 20
+  },
+  {
+   "w": "the",
+   "start": 58.73,
+   "end": 58.88,
+   "line": 20
+  },
+  {
+   "w": "msf",
+   "start": 58.88,
+   "end": 59.57,
+   "line": 20
+  },
+  {
+   "w": "ai",
+   "start": 59.57,
+   "end": 59.91,
+   "line": 20
+  },
+  {
+   "w": "hub",
+   "start": 59.91,
+   "end": 60.27,
+   "line": 20
+  }
+ ]
+}
