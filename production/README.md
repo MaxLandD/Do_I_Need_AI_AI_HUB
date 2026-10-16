@@ -2,21 +2,23 @@
 
 Source for the AI Hub home-page video, built from the storyboard
 (`HOME-07_…_Storyboard_…pdf`), the key frames and captions (`…KeyFramesAndCaptions….zip`)
-and the ElevenLabs voice-over in the repository root.
+and the ElevenLabs voice-over in the repository root. The build uses the latest
+`ElevenLabs_*.mp3` (currently the 2026-10-16 take, script in
+`HOME-07_…_VoiceOver_ElevenLabs_…txt`: "use AI" instead of "open AI").
 
 ## Deliverables (`/output`)
 
 | File | What |
 | --- | --- |
-| `HOME-07_DoINeedAIForThis_EN_v2.mp4` | 1920 × 1080, 16:9, 30 fps, H.264 High, yuv420p, BT.709, +faststart, AAC 48 kHz stereo, captions burned in |
-| `HOME-07_DoINeedAIForThis_captions_EN_v2.srt` | Captions retimed to the supplied voice-over, word for word as in the script |
-| `HOME-07_DoINeedAIForThis_EN_v2_thumbnail.png` | Scene 7 still: four ticks and the lit AI slot (no caption) |
+| `HOME-07_DoINeedAIForThis_EN_v3.mp4` | 1920 × 1080, 16:9, 30 fps, H.264 High, yuv420p, BT.709, +faststart, AAC 48 kHz stereo, captions burned in |
+| `HOME-07_DoINeedAIForThis_captions_EN_v3.srt` | Captions retimed to the supplied voice-over, word for word as in the script |
+| `HOME-07_DoINeedAIForThis_EN_v3_thumbnail.png` | Scene 7 still: four ticks and the lit AI slot (no caption) |
 
 ## Timing
 
-The video follows the supplied voice-over, which runs 60.4 s, not the 58.5 s planned in
+The video follows the supplied voice-over, which runs 61.6 s, not the 58.5 s planned in
 the storyboard. The voice starts at 0:00.9, once the intro title has landed, and the last frame
-is held one second after the voice ends, so the video runs **62.1 s (1863 frames)**.
+is held one second after the voice ends, so the video runs **63.4 s (1902 frames)**.
 Every animation cue comes from a forced alignment of the voice-over (`data/voice_words.json`),
 so each card lands on the words that name its tool.
 
@@ -40,7 +42,8 @@ so each card lands on the words that name its tool.
   electric piano, pizzicato, glockenspiel, strings, light percussion). The bar grid puts the AI slot
   lighting up on a downbeat (bar 16), lifts on "Four times no? Then AI can help." (bar 22), settles for
   the outro and ends on a final chord that rings out to the last frame. The groove stops for one beat
-  on the freeze after the Ask AI click.
+  on the freeze after the Ask AI click. The score is played through a tempo map anchored to these
+  moments, so it re-syncs by itself to a new voice-over (it stays between about 91 and 100 BPM).
 * **Effects (storyboard):** five soft ticks as the tasks appear, a click as the cursor lands, a pop as
   each card lands (one semitone higher each time, softer for "You"), a warm two-note chime when the
   AI slot lights, plus very soft whooshes on transitions.

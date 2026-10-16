@@ -54,7 +54,7 @@
   C.side1 = w(4, "and");
   C.side2 = C.side1 + 0.28;
   C.shimmer = w(4, "every");
-  C.click = w(4, "open") + 0.14;
+  C.click = w(4, "use") + 0.14;
   C.cursorFrom = C.click - 0.78;
   C.lift = lineEnd(4) + 0.08;
   C.slotsIn = C.lift + 0.55;
@@ -80,6 +80,7 @@
   C.pauseAsk = w(20, "pause") - 0.06;
   C.hub = w(21, "you") - 0.06;
   C.logo = C.hub + 0.62;
+  C.finalChord = w(21, "msf") + 0.32;   // the music resolves under "MSF AI Hub"
   C.end = T.duration;
   window.CUES = C;
 

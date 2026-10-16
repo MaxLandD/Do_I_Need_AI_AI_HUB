@@ -1,14 +1,15 @@
 #!/usr/bin/env bash
 # Build HOME-07 "Do I need AI for this?" end to end.
-#   ./build.sh            -> output/HOME-07_DoINeedAIForThis_EN_v2.mp4 (+ SRT, thumbnail)
+#   ./build.sh            -> output/HOME-07_DoINeedAIForThis_EN_v3.mp4 (+ SRT, thumbnail)
+#   VOICE=<file.mp3> ./build.sh   to build from a specific voice-over (default: the latest ElevenLabs_*.mp3)
 # Needs: python3 (numpy, scipy, pocketsphinx, tinysoundfont, pyloudnorm), node + playwright (Chromium), ffmpeg.
 set -euo pipefail
 HERE="$(cd "$(dirname "$0")" && pwd)"
 REPO="$(dirname "$HERE")"
 WORK="${WORK:-$HERE/.build}"
 OUT="$REPO/output"
-NAME="HOME-07_DoINeedAIForThis_EN_v2"
-VOICE="$(ls "$REPO"/ElevenLabs_*.mp3 | head -1)"
+NAME="HOME-07_DoINeedAIForThis_EN_v3"
+VOICE="${VOICE:-$(ls "$REPO"/ElevenLabs_*.mp3 | sort | tail -1)}"
 SF2="$WORK/GeneralUser-GS.sf2"
 mkdir -p "$WORK" "$OUT"
 

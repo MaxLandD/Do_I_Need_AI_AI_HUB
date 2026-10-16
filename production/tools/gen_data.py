@@ -88,7 +88,7 @@ def main():
 
     out_dir = os.path.join(REPO, "output")
     os.makedirs(out_dir, exist_ok=True)
-    with open(os.path.join(out_dir, "HOME-07_DoINeedAIForThis_captions_EN_v2.srt"), "w") as f:
+    with open(os.path.join(out_dir, "HOME-07_DoINeedAIForThis_captions_EN_v3.srt"), "w") as f:
         for i, c in enumerate(cues, 1):
             f.write(f"{i}\n{srt_time(c['start'])} --> {srt_time(c['end'])}\n{c['text']}\n\n")
     print(f"duration {video_end:.3f}s, {nframes} frames, {len(cues)} captions")

@@ -2,12 +2,16 @@
 
 Music is composed here note by note (100 BPM, D major) and rendered with the
 GeneralUser GS SoundFont (free for any music use, private or commercial).
-The bar grid is chosen so the story beats land on downbeats:
-  bar 16 (36.0 s)  the AI slot lights up
-  bar 22 (50.4 s)  "Four times no? Then AI can help." - the music lifts
-  bar 23 (52.8 s)  outro, music settles
-  bar 26 (60.0 s)  final chord, rings out to the last frame
+The score is written on a 100 BPM grid and then played through a tempo map
+anchored to the picture (like a film score following the cut), so the story
+beats land on downbeats whatever the voice-over timing:
+  bar 6   the first task lifts out of the list
+  bar 16  the AI slot lights up
+  bar 22  "Four times no? Then AI can help." - the music lifts
+  bar 23  outro, music settles
+  bar 26  final chord under "MSF AI Hub", rings out to the last frame
 and the groove stops for one beat on the "freeze" after the Ask AI click.
+The tempo stays within a few percent of 100 BPM and changes smoothly.
 
 Sound effects follow the storyboard: five soft ticks as the tasks appear, a
 click as the cursor lands, a pop as each card lands (one semitone higher each
@@ -20,6 +24,7 @@ import json, os, subprocess, sys
 import numpy as np
 from scipy import signal
 from scipy.ndimage import minimum_filter1d
+from scipy.interpolate import PchipInterpolator
 import tinysoundfont
 import pyloudnorm as pyln
 
@@ -307,7 +312,29 @@ def part_drums():
 # ----------------------------------------------------------------------------
 # rendering
 # ----------------------------------------------------------------------------
-def render_part(sf2, notes, program, total, bank=0, drums=False, pan=64, gain=0.0):
+class TempoMap:
+    """Score time (seconds at 100 BPM) -> video time, smooth through anchors."""
+
+    def __init__(self, anchors):
+        x, y = map(np.asarray, zip(*sorted(anchors)))
+        self.x, self.y = x, y
+        self.f = PchipInterpolator(x, y, extrapolate=False)
+        self.d = self.f.derivative()
+
+    def __call__(self, t):
+        t = np.asarray(t, dtype=float)
+        lo, hi = self.x[0], self.x[-1]
+        out = self.f(np.clip(t, lo, hi))
+        out = np.where(t < lo, self.y[0] + (t - lo) * float(self.d(lo)), out)
+        out = np.where(t > hi, self.y[-1] + (t - hi) * float(self.d(hi)), out)
+        return out if out.ndim else float(out)
+
+    def report(self):
+        for (x0, y0), (x1, y1) in zip(zip(self.x, self.y), zip(self.x[1:], self.y[1:])):
+            print(f"  bars {x0 / BAR + 1:4.1f}-{x1 / BAR + 1:4.1f}: {100 * (x1 - x0) / (y1 - y0):5.1f} BPM average")
+
+
+def render_part(sf2, notes, program, total, bank=0, drums=False, pan=64, gain=0.0, warp=None):
     syn = tinysoundfont.Synth(gain=gain, samplerate=SR)
     sfid = syn.sfload(sf2)
     syn.program_select(0, sfid, bank, program, is_drums=drums)
@@ -315,8 +342,9 @@ def render_part(sf2, notes, program, total, bank=0, drums=False, pan=64, gain=0.
     ev = []
     for t, d, k, v in notes:
         t = max(0.0, t)
-        ev.append((t + d, 0, k, 0))
-        ev.append((t, 1, k, v))
+        on, off = (warp(t), warp(t + d)) if warp else (t, t + d)
+        ev.append((off, 0, k, 0))
+        ev.append((on, 1, k, v))
     ev.sort(key=lambda e: (e[0], e[1]))
     out = np.zeros((total, 2), np.float32)
     pos = 0
@@ -463,6 +491,15 @@ def main():
     total = int(round(dur * SR))
 
     # ---------------- music ----------------
+    warp = TempoMap([
+        (0.0, 0.0),
+        (bar_t(6), C["lift"] + 0.22),          # the first task lifts out of the list
+        (bar_t(16), C["land"][4]),             # the AI slot lights up
+        (bar_t(22), C["closing"] + 0.20),      # "Four times no? Then AI can help."
+        (bar_t(23), C["outro"] + 0.05),        # fade through dark teal
+        (bar_t(26), C["finalChord"]),          # "...on the MSF AI Hub."
+    ])
+    warp.report()
     parts = [
         # name, notes, program, bank, drums, pan, gain_db, reverb
         ("pad", part_pad(), 89, 0, False, 64, -4.0, 0.30),
@@ -477,21 +514,22 @@ def main():
     ir = reverb_ir()
     music = np.zeros((total, 2))
     for name, notes, prog, bank, drums, pan, g, wet in parts:
-        x = render_part(sf2, notes, prog, total, bank=bank, drums=drums, pan=pan).astype(np.float64)
+        x = render_part(sf2, notes, prog, total, bank=bank, drums=drums, pan=pan, warp=warp).astype(np.float64)
         x *= 10 ** (g / 20)
         x = apply_reverb(x, ir, wet)
         music += x
         print(f"  part {name:8s} {len(notes):4d} notes, peak {np.abs(x).max():.3f}")
 
     # the freeze: let the pad breathe, then a soft riser into the lift of the first card
-    riser = sfx_riser(FREEZE[1] - FREEZE[0] + 0.05, 1.0)
-    place(music, 0.10 * butter(riser, 6000, "low", 2), FREEZE[0] + 0.02)
+    f0, f1 = warp(FREEZE[0]), warp(FREEZE[1])
+    riser = sfx_riser(f1 - f0 + 0.05, 1.0)
+    place(music, 0.10 * butter(riser, 6000, "low", 2), f0 + 0.02)
 
     # shape: fade in, overall arc, ending exactly on the last frame
-    arc = env_curve([
-        (0.0, -40), (0.35, -3), (4.8, -1.5), (12.0, 0), (31.2, 0), (36.0, 1.0), (40.8, -0.5),
-        (50.4, 0.5), (51.6, 1.5), (52.8, 0), (59.9, -0.5), (60.0, 0), (dur - 1.6, -2.5), (dur - 0.05, -40), (dur, -60),
-    ], total)
+    score_arc = [(0.35, -3), (4.8, -1.5), (12.0, 0), (31.2, 0), (36.0, 1.0), (40.8, -0.5),
+                 (50.4, 0.5), (51.6, 1.5), (52.8, 0), (59.9, -0.5), (60.0, 0)]
+    arc = env_curve([(0.0, -40)] + [(warp(t), db) for t, db in score_arc] +
+                    [(dur - 1.6, -2.5), (dur - 0.05, -40), (dur, -60)], total)
     music *= arc[:, None]
     music = butter(music, 45, "high", 2)
     music = peaking(music, 2800, -3.0, 0.8)          # leave room for the voice

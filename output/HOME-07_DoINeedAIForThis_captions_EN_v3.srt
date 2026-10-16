@@ -1,84 +1,84 @@
 1
-00:00:00,810 --> 00:00:03,160
+00:00:00,830 --> 00:00:03,220
 AI is a great tool.
 
 2
-00:00:03,160 --> 00:00:05,620
+00:00:03,220 --> 00:00:05,660
 But you don't need it for everything.
 
 3
-00:00:05,620 --> 00:00:08,270
+00:00:05,660 --> 00:00:08,270
 A normal day. Five tasks.
 
 4
-00:00:08,270 --> 00:00:12,210
-And the same reflex every time: open AI.
+00:00:08,270 --> 00:00:12,170
+And the same reflex every time: use AI.
 
 5
-00:00:12,210 --> 00:00:13,900
+00:00:12,170 --> 00:00:13,720
 Add up three invoices?
 
 6
-00:00:13,900 --> 00:00:16,930
+00:00:13,720 --> 00:00:16,830
 No need for AI. A calculator is faster.
 
 7
-00:00:16,930 --> 00:00:18,770
+00:00:16,830 --> 00:00:18,640
 Check the cold chain procedure?
 
 8
-00:00:18,770 --> 00:00:21,950
+00:00:18,640 --> 00:00:22,050
 MSF already wrote it down. Go to the guideline.
 
 9
-00:00:21,950 --> 00:00:24,600
+00:00:22,050 --> 00:00:24,620
 A two-line reply? Just type it.
 
 10
-00:00:24,600 --> 00:00:26,780
+00:00:24,620 --> 00:00:26,820
 Asking AI would take longer.
 
 11
-00:00:26,780 --> 00:00:29,620
+00:00:26,820 --> 00:00:29,660
 A colleague's evaluation? That needs you:
 
 12
-00:00:29,620 --> 00:00:33,270
+00:00:29,660 --> 00:00:33,310
 your judgement, your words, your relationship.
 
 13
-00:00:33,270 --> 00:00:35,510
+00:00:33,310 --> 00:00:35,550
 A forty-page report to summarise?
 
 14
-00:00:35,510 --> 00:00:37,440
+00:00:35,550 --> 00:00:37,610
 Now AI earns its place.
 
 15
-00:00:37,440 --> 00:00:40,320
+00:00:37,610 --> 00:00:40,650
 It saves real time. You still check it.
 
 16
-00:00:40,320 --> 00:00:44,830
-So, before you open AI, ask yourself four questions.
+00:00:40,650 --> 00:00:45,180
+So, before you use AI, ask yourself four questions.
 
 17
-00:00:44,830 --> 00:00:47,390
+00:00:45,180 --> 00:00:47,700
 A simpler tool? Already written down?
 
 18
-00:00:47,390 --> 00:00:50,110
+00:00:47,700 --> 00:00:50,610
 Does it need me? Quicker to do it myself?
 
 19
-00:00:50,110 --> 00:00:53,060
+00:00:50,610 --> 00:00:53,850
 Four times no? Then AI can help.
 
 20
-00:00:53,060 --> 00:00:57,860
+00:00:53,850 --> 00:00:59,020
 Sensitive, about a person, or unsure? Pause and ask.
 
 21
-00:00:57,860 --> 00:01:01,570
+00:00:59,020 --> 00:01:02,870
 You will find everything else on the MSF AI Hub.
 
