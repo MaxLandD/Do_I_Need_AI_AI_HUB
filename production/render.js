@@ -11,9 +11,12 @@ const fs = require("fs");
 const { chromium } = require("playwright");
 
 const PAGE = "file://" + path.join(__dirname, "animation", "index.html");
+const PORTRAIT = process.env.PORTRAIT === "1";        // 1080 x 1920 re-stacked version
+const VW = PORTRAIT ? 1080 : 1920, VH = PORTRAIT ? 1920 : 1080;
 
 async function openPage(browser, query = "") {
-  const page = await browser.newPage({ viewport: { width: 1920, height: 1080 }, deviceScaleFactor: 1 });
+  if (PORTRAIT) query = (query ? query + "&" : "?") + "portrait=1";
+  const page = await browser.newPage({ viewport: { width: VW, height: VH }, deviceScaleFactor: 1 });
   page.on("pageerror", (e) => { console.error("page error:", e.message); process.exitCode = 1; });
   page.on("console", (m) => { if (m.type() === "error") console.error("console:", m.text()); });
   await page.goto(PAGE + query);
@@ -23,7 +26,7 @@ async function openPage(browser, query = "") {
 
 async function shot(page, t, file) {
   await page.evaluate((tt) => window.render(tt), t);
-  await page.screenshot({ path: file, type: "png", clip: { x: 0, y: 0, width: 1920, height: 1080 } });
+  await page.screenshot({ path: file, type: "png", clip: { x: 0, y: 0, width: VW, height: VH } });
 }
 
 (async () => {

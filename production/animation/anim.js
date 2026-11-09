@@ -9,6 +9,12 @@
   const $ = (id) => document.getElementById(id);
   const qs = new URLSearchParams(location.search);
   const NOCAP = qs.has("nocap");
+  // portrait (1080 x 1920): same timeline, re-stacked layout
+  const PORTRAIT = qs.has("portrait");
+  if (PORTRAIT) document.body.classList.add("portrait");
+  const W = PORTRAIT ? 1080 : 1920, H = PORTRAIT ? 1920 : 1080, CX = W / 2;
+  const S2 = PORTRAIT ? { s: 0.86, x: -28, y: 325 } : { s: 1, x: 0, y: 0 };   // scene 2 placement
+  const CARD_S = PORTRAIT ? 0.86 : 1, CARD_Y = PORTRAIT ? 380 : 150;
 
   // ---------- maths ----------
   const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
@@ -99,8 +105,12 @@
     { lbl: "You", icon: "user" },
     { lbl: "AI", icon: "sparkle", ai: true },
   ];
-  const SLOT_X = [148, 480, 812, 1144, 1476];
-  const SLOT_W = 298, SLOT_H = 228, SLOT_Y = 601;
+  const SLOT_W = 298, SLOT_H = 228;
+  // slot top-left corners: one row in landscape, 3 + 2 in portrait
+  const SLOT_POS = PORTRAIT
+    ? [[69, 840], [391, 840], [713, 840], [230, 1118], [552, 1118]]
+    : [148, 480, 812, 1144, 1476].map((x) => [x, 601]);
+  const CARD_BOTTOM = CARD_Y + 188 * CARD_S;
   const CHIPS = [
     { txt: "A simpler tool?", icon: "screwdriver-wrench" },
     { txt: "Already written down?", icon: "book-open" },
@@ -162,21 +172,29 @@
     // trails (dotted curves from card to slot)
     const svg = $("trails");
     let defs = `<defs>`, body = "";
-    el.trailD = SLOT_X.map((x) => {
-      const cx = x + SLOT_W / 2;
-      return `M960 358 C960 470 ${cx} 470 ${cx} 589`;
+    el.trailD = SLOT_POS.map(([x, y]) => {
+      const cx = x + SLOT_W / 2, y0 = CARD_BOTTOM + 20, y1 = y - 12;
+      if (PORTRAIT && y > 1000) {               // second row: curve over, then down between the first-row slots
+        const mid = y0 + 110;
+        return `M${CX} ${y0} C${CX} ${mid} ${cx} ${mid - 30} ${cx} ${mid + 80} L${cx} ${y1}`;
+      }
+      const mid = y0 + 112;
+      return `M${CX} ${y0} C${CX} ${mid} ${cx} ${mid} ${cx} ${y1}`;
     });
     el.trailD.forEach((d, k) => {
-      defs += `<mask id="mk${k}" maskUnits="userSpaceOnUse" x="0" y="0" width="1920" height="1080"><path id="mp${k}" d="${d}" stroke="#fff" stroke-width="16" fill="none" stroke-linecap="round"/></mask>`;
+      defs += `<mask id="mk${k}" maskUnits="userSpaceOnUse" x="0" y="0" width="${W}" height="${H}"><path id="mp${k}" d="${d}" stroke="#fff" stroke-width="16" fill="none" stroke-linecap="round"/></mask>`;
       body += `<g id="tr${k}" opacity="0"><path id="tp${k}" d="${d}" stroke="#3E8893" stroke-width="4.6" fill="none" stroke-linecap="round" stroke-dasharray="0 12.5" mask="url(#mk${k})"/>` +
-        `<circle id="td${k}" cx="${SLOT_X[k] + SLOT_W / 2}" cy="589" r="0" fill="#3E8893"/></g>`;
+        `<circle id="td${k}" cx="${SLOT_POS[k][0] + SLOT_W / 2}" cy="${SLOT_POS[k][1] - 12}" r="0" fill="#3E8893"/></g>`;
     });
+    svg.setAttribute("width", W);
+    svg.setAttribute("height", H);
     svg.innerHTML = defs + "</defs>" + body;
 
     // slots
     el.slots = SLOTS.map((s, i) => {
       const o = make("div", "slot will", $("slots"));
-      o.style.left = SLOT_X[i] + "px";
+      o.style.left = SLOT_POS[i][0] + "px";
+      o.style.top = SLOT_POS[i][1] + "px";
       o.style.zIndex = String(5 - i);       // ticks stay above the neighbour on the right
       const parts = { o };
       if (s.ai) {
@@ -254,7 +272,7 @@
     el.cardX = el.cards.map((p) => {
       const wdt = p.c.offsetWidth;
       p.c.style.width = wdt + "px";            // freeze width (typing must not resize)
-      return Math.round(960 - wdt / 2);
+      return Math.round(CX - (wdt * CARD_S) / 2);
     });
     el.trailLen = el.trailD.map((_, k) => $("tp" + k).getTotalLength());
     el.cards[2].typed.textContent = "";
@@ -275,8 +293,8 @@
     const nx = -dy, ny = dx;                   // normal to travel direction
     for (const b of el.bars) {
       const s = ((b.s0 + b.sp * t) % 3400) - 900;          // along direction
-      const x = 960 + dx * (s - 1250) + nx * b.o0 * 0.55;
-      const y = 540 + dy * (s - 1250) + ny * b.o0 * 0.55;
+      const x = CX + dx * (s - 1250) + nx * b.o0 * 0.55;
+      const y = H / 2 + dy * (s - 1250) + ny * b.o0 * 0.55;
       b.e.style.opacity = b.op;
       b.e.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px) rotate(-38deg)`;
     }
@@ -378,14 +396,14 @@
 
     // ---- cards ----
     el.cards.forEach((p, k) => {
-      let op, X = el.cardX[k], Y = 150, sc = 1, sh = 1;
+      let op, X = el.cardX[k], Y = CARD_Y, sc = CARD_S, sh = 1;
       if (k === 0) {
         const a = P(t, C.lift, 0.18);
         const m = E.inOutCubic(P(t, C.lift + 0.08, 0.64));
-        const s0 = 0.64;
-        sc = lerp(s0, 1, m);
-        X = lerp(220 - 108 * s0, el.cardX[0], m);
-        Y = lerp(242 - 94 * s0, 150, m);
+        const s0 = 0.64 * S2.s;                 // start on the first row of the task list
+        sc = lerp(s0, CARD_S, m);
+        X = lerp(S2.x + 220 * S2.s - 108 * s0, el.cardX[0], m);
+        Y = lerp(S2.y + 242 * S2.s - 94 * s0, CARD_Y, m);
         op = a; sh = m;
       } else {
         const i = E.outCubic(P(t, C.swap[k - 1] + 0.16, 0.36));
@@ -506,7 +524,7 @@
 
     // ---- sparkle burst: the one bright beat ----
     const L4 = C.land[4];
-    const cx = SLOT_X[4] + SLOT_W / 2, cy = SLOT_Y - 12 + SLOT_H / 2;
+    const cx = SLOT_POS[4][0] + SLOT_W / 2, cy = SLOT_POS[4][1] - 12 + SLOT_H / 2;
     for (const sp of el.sparks) {
       const p = P(t, L4 + 0.03 + sp.delay, 0.95);
       const on2 = p > 0 && p < 1;

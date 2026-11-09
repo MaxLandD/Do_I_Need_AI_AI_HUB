@@ -12,6 +12,7 @@ and the ElevenLabs voice-over in the repository root. The build uses the latest
 | --- | --- |
 | `HOME-07_DoINeedAIForThis_EN_v4.mp4` | 1920 × 1080, 16:9, 30 fps, H.264 High, yuv420p, BT.709, +faststart, AAC 48 kHz stereo, captions burned in |
 | `HOME-07_DoINeedAIForThis_captions_EN_v4.srt` | Captions retimed to the supplied voice-over, word for word as in the script |
+| `HOME-07_DoINeedAIForThis_EN_v4_vertical.mp4` | 1080 × 1920 (9:16) vertical version, layout re-stacked (slots in 3 + 2 rows, question chips in a column), same soundtrack and captions |
 | `HOME-07_DoINeedAIForThis_EN_v4_thumbnail.png` | Scene 7 still: four ticks and the lit AI slot (no caption) |
 
 ## Timing

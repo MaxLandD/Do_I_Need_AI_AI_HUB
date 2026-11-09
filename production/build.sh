@@ -34,6 +34,16 @@ ffmpeg -y -v error -framerate 30 -i "$WORK/frames/f%05d.png" -i "$WORK/audio/mix
   -c:a aac -b:a 192k -ar 48000 -movflags +faststart -shortest \
   -metadata title="Do I need AI for this?" "$OUT/$NAME.mp4"
 
+# 4b. vertical version (1080 x 1920, re-stacked layout, same soundtrack)
+rm -rf "$WORK/frames_v"
+PORTRAIT=1 node "$HERE/render.js" frames "$WORK/frames_v" "${WORKERS:-4}"
+ffmpeg -y -v error -framerate 30 -i "$WORK/frames_v/f%05d.png" -i "$WORK/audio/mix.wav" \
+  -vf "scale=out_color_matrix=bt709:out_range=tv,format=yuv420p" \
+  -c:v libx264 -profile:v high -preset slow -crf 17 -tune animation -g 60 \
+  -colorspace bt709 -color_primaries bt709 -color_trc bt709 -color_range tv \
+  -c:a aac -b:a 192k -ar 48000 -movflags +faststart -shortest \
+  -metadata title="Do I need AI for this?" "$OUT/${NAME}_vertical.mp4"
+
 # 5. thumbnail: scene 7, four ticks and the lit AI slot
 node "$HERE/render.js" thumb "$OUT/${NAME}_thumbnail.png" 38.6
 ls -la "$OUT"
