@@ -7,9 +7,9 @@ anchored to the picture (like a film score following the cut), so the story
 beats land on downbeats whatever the voice-over timing:
   bar 6   the first task lifts out of the list
   bar 16  the AI slot lights up
-  bar 22  "Four times no? Then AI can help." - the music lifts
-  bar 23  outro, music settles
-  bar 26  final chord under "MSF AI Hub", rings out to the last frame
+  bar 23  "Four times no? Then AI can help." - the music lifts
+  bar 24  outro, music settles
+  bar 27  final chord under "MSF AI Hub", rings out to the last frame
 and the groove stops for one beat on the "freeze" after the Ask AI click.
 The tempo stays within a few percent of 100 BPM and changes smoothly.
 
@@ -62,10 +62,10 @@ FORM = [
     "Dadd9", "A/C#", "Bm7", "Gmaj7",                    # 10-13
     "Em9", "A11",                                       # 14-15 build to the AI moment
     "Dmaj9", "Gmaj9",                                   # 16-17 AI earns its place
-    "Bm7", "Gmaj7", "D/F#", ("Asus", "A11"),            # 18-21 the four questions
-    "Dadd9",                                            # 22    lift
-    "Gmaj7", "D/F#", ("Em9", "A11"),                    # 23-25 outro settles
-    "Dmaj9",                                            # 26    final chord
+    "Em9", "Bm7", "Gmaj7", "D/F#", ("Asus", "A11"),     # 18-22 the four questions
+    "Dadd9",                                            # 23    lift
+    "Gmaj7", "D/F#", ("Em9", "A11"),                    # 24-26 outro settles
+    "Dmaj9",                                            # 27    final chord
 ]
 N_BARS = len(FORM)
 
@@ -77,9 +77,9 @@ for b in range(1, N_BARS + 1):
     elif b <= 13: SECTION[b] = "groove"
     elif b <= 15: SECTION[b] = "build"
     elif b <= 17: SECTION[b] = "peak"
-    elif b <= 21: SECTION[b] = "questions"
-    elif b == 22: SECTION[b] = "lift"
-    elif b <= 25: SECTION[b] = "outro"
+    elif b <= 22: SECTION[b] = "questions"
+    elif b == 23: SECTION[b] = "lift"
+    elif b <= 26: SECTION[b] = "outro"
     else: SECTION[b] = "final"
 
 FREEZE = (4 * BAR + 3 * BEAT, 5 * BAR)    # bar 5, beat 4: everything rhythmic stops
@@ -249,21 +249,21 @@ def part_glock():
         notes.append((bar_t(16) + i * STEP * 0.5, STEP * 2, k, vel(52 + i * 3)))
     for s, k in [(4, 86), (6, 85), (8, 81), (12, 78)]:
         notes.append((step_time(16, s), STEP * 2, k, vel(48)))
-    # the lift (bar 22)
+    # the lift (bar 23)
     for i, k in enumerate([74, 78, 81, 86, 88, 86, 81, 78]):
-        notes.append((step_time(22, i * 2), STEP * 2, k, vel(56 - i * 2)))
-    # final chord shimmer (bar 26)
+        notes.append((step_time(23, i * 2), STEP * 2, k, vel(56 - i * 2)))
+    # final chord shimmer (bar 27)
     for i, k in enumerate([73, 76, 78, 81, 85, 88]):
-        notes.append((bar_t(26) + 0.04 + i * 0.09, 1.2, k, vel(52 - i * 3)))
+        notes.append((bar_t(27) + 0.04 + i * 0.09, 1.2, k, vel(52 - i * 3)))
     return notes
 
 
 def part_strings():
     notes = []
-    for b in (14, 15, 16, 17, 22, 26):
+    for b in (14, 15, 16, 17, 23, 27):
         for t0, d, name in chords_in_bar(b):
             dur = d + 0.1 if b != 26 else 3.6
-            v = {14: 46, 15: 58, 16: 66, 17: 54, 22: 68, 26: 60}[b]
+            v = {14: 46, 15: 58, 16: 66, 17: 54, 23: 68, 27: 60}[b]
             for k in CH[name][1]:
                 notes.append((t0, dur, k + 12, vel(v, 3)))
             notes.append((t0, dur, CH[name][0] + 24, vel(v - 6, 3)))
@@ -304,7 +304,7 @@ def part_drums():
         if b == 15:
             for i, s in enumerate((12, 13, 14, 15)):
                 notes.append((step_time(b, s), 0.1, SIDE, vel(44 + i * 10)))
-    for t, v in [(bar_t(16), 56), (bar_t(22), 52)]:
+    for t, v in [(bar_t(16), 56), (bar_t(23), 52)]:
         notes.append((t, 2.0, CRASH, v))
     return notes
 
@@ -495,9 +495,9 @@ def main():
         (0.0, 0.0),
         (bar_t(6), C["lift"] + 0.22),          # the first task lifts out of the list
         (bar_t(16), C["land"][4]),             # the AI slot lights up
-        (bar_t(22), C["closing"] + 0.20),      # "Four times no? Then AI can help."
-        (bar_t(23), C["outro"] + 0.05),        # fade through dark teal
-        (bar_t(26), C["finalChord"]),          # "...on the MSF AI Hub."
+        (bar_t(23), C["closing"] + 0.20),      # "Four times no? Then AI can help."
+        (bar_t(24), C["outro"] + 0.05),        # fade through dark teal
+        (bar_t(27), C["finalChord"]),          # "...on the MSF AI Hub."
     ])
     warp.report()
     parts = [
@@ -527,7 +527,7 @@ def main():
 
     # shape: fade in, overall arc, ending exactly on the last frame
     score_arc = [(0.35, -3), (4.8, -1.5), (12.0, 0), (31.2, 0), (36.0, 1.0), (40.8, -0.5),
-                 (50.4, 0.5), (51.6, 1.5), (52.8, 0), (59.9, -0.5), (60.0, 0)]
+                 (52.8, 0.5), (54.0, 1.5), (55.2, 0), (62.3, -0.5), (62.4, 0)]
     arc = env_curve([(0.0, -40)] + [(warp(t), db) for t, db in score_arc] +
                     [(dur - 1.6, -2.5), (dur - 0.05, -40), (dur, -60)], total)
     music *= arc[:, None]

@@ -13,7 +13,7 @@ from pocketsphinx import Config, Decoder, get_model_path
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 LINES = [
-    "AI is a great tool.",
+    "AI is a powerful tool.",
     "But you don't need it for everything.",
     "A normal day. Five tasks.",
     "And the same reflex every time: use AI.",
@@ -27,7 +27,7 @@ LINES = [
     "your judgement, your words, your relationship.",
     "A forty-page report to summarise?",
     "Now AI earns its place.",
-    "It saves real time. You still check it.",
+    "AI can save you time, but you must always check it before you use it.",
     "So, before you use AI, ask yourself four questions.",
     "A simpler tool? Already written down?",
     "Does it need me? Quicker to do it myself?",

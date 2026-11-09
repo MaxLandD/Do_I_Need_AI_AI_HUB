@@ -68,7 +68,7 @@
   C.depart = C.land.map((l, i) => l - TRAVEL[i]);
   C.swap = [lineEnd(6) + 0.10, lineEnd(8) + 0.06, lineEnd(10) + 0.12, lineEnd(12) + 0.08];
   C.typeStart = C.swap[1] + 0.34;
-  C.youCheck = w(15, "you");
+  C.youCheck = w(15, "must");
   C.away = lineEnd(15) + 0.05;
   C.kicker = w(16, "before") - 0.12;
   C.title = C.kicker + 0.45;
